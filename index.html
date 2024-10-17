@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="zh">
 <head>
@@ -6,363 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>胸部CT智能诊断系统</title>
     <link href="https://fonts.googleapis.com/css2?family=Lobster:wght@700&family=Orbitron&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Orbitron', sans-serif;
-            color: #eee;
-            margin: 0;
-            padding: 0;
-            background: url('BackGround.png') no-repeat center center fixed;
-            background-size: cover;
-            box-sizing: border-box;
-            animation: fadeIn 1s ease-in-out;
-        }
-
-        .fixed-header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            display: flex;
-            align-items: center;
-            background: rgba(0, 0, 0, 0.7);
-            color: #00bfff;
-            padding: 10px 20px;
-            width: 100%;
-            z-index: 999;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            animation: slideDown 0.5s ease-out;
-            font-family: 'SimSun', serif;
-        }
-
-        .fixed-header img {
-            height: 50px;
-            margin-right: 15px;
-        }
-
-        .fixed-header h1 {
-            font-size: 1.5rem;
-            margin: 0;
-            font-family: 'SimSun', serif; 
-        }
-
-        .cover-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: 1000;
-            text-align: center;
-            transition: opacity 0.5s ease;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(10px);
-            animation: fadeIn 1s ease-out;
-            font-family: 'SimSun', serif;
-        }
-
-        .cover-screen.hidden {
-            opacity: 0;
-            visibility: hidden;
-            animation: fadeOut 0.5s ease-out;
-        }
-
-        .cover-screen img {
-            max-height: 150px;
-            margin-bottom: 5px;
-            animation: bounceIn 1s ease-out;
-        }
-
-        .cover-screen h1 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            color: #00bfff;
-            font-family: 'SimSun', serif;
-            animation: fadeInUp 1s ease-out;
-        }
-
-        .cover-screen h2 {
-            font-size: 1.6rem;
-            color: #00bfff;
-            margin-top: 10px;
-            margin-bottom: 150px;
-            font-family: 'SimSun', serif;
-            text-align: right;
-            padding-left: 300px;
-            font-style: italic;
-            animation: fadeInRight 1s ease-out;
-        }
-
-        .cover-screen h2::before {
-            content: "— ";
-            color: #00bfff;
-        }
-
-        .cover-screen button {
-            padding: 14px 28px;
-            font-size: 1.2rem;
-            border: none;
-            border-radius: 8px;
-            background: #00bfff;
-            color: white;
-            cursor: pointer;
-            transition: background 0.3s, transform 0.3s;
-            font-family: 'Orbitron', sans-serif;
-            animation: zoomIn 1s ease-out;
-        }
-
-        .cover-screen button:hover {
-            background: #00aaff;
-            transform: scale(1.05);
-        }
-
-        .button-container {
-            position: fixed;
-            top: 80px;
-            left: 0;
-            right: 0;
-            background: rgba(0, 0, 0, 0.8);
-            border-radius: 12px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-            padding: 20px;
-            text-align: center;
-            z-index: 999;
-            display: none;
-            opacity: 0;
-            transition: opacity 0.5s ease, transform 0.5s ease;
-        }
-
-        .button-container.show {
-            display: block;
-            opacity: 1;
-            transform: translateY(0);
-            animation: fadeInUp 0.5s ease-out;
-        }
-
-        .button-container button {
-            padding: 15px 30px;
-            font-size: 1.2rem;
-            border: none;
-            border-radius: 8px;
-            background: #00bfff;
-            color: white;
-            cursor: pointer;
-            transition: background 0.3s, transform 0.3s;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-            margin: 5px;
-            animation: zoomIn 1s ease-out;
-        }
-
-        .button-container button:hover {
-            background: #00aaff;
-            transform: scale(1.05);
-        }
-
-        .button-container {
-            position: fixed;
-            top: 80px;
-            left: 0;
-            right: 0;
-            background: rgba(0, 0, 0, 0.8);
-            border-radius: 12px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-            padding: 20px;
-            text-align: center;
-            z-index: 999;
-            display: none;
-            opacity: 0;
-            transition: opacity 0.5s ease, transform 0.5s ease;
-        }
-
-        .button-container.show {
-            display: block;
-            opacity: 1;
-            transform: translateY(0);
-            animation: fadeInUp 0.5s ease-out;
-        }
-
-        .button-container button {
-            padding: 15px 30px;
-            font-size: 1.2rem;
-            border: none;
-            border-radius: 8px;
-            background: #00bfff;
-            color: white;
-            cursor: pointer;
-            transition: background 0.3s, transform 0.3s;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-            margin: 5px;
-            animation: zoomIn 1s ease-out;
-        }
-
-        .button-container button:hover {
-            background: #00aaff;
-            transform: scale(1.05);
-        }
-
-        .core-components {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
-            margin: 20px auto;
-            max-width: 1200px;
-            padding: 20px;
-            animation: fadeInUp 1s ease-out;
-        }
-
-        .core-component {
-            background: #222;
-            border-radius: 12px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-            padding: 22px;
-            width: calc(50% - 20px);
-            max-width: 525px;
-            text-align: left;
-            color: #eee;
-            animation: fadeIn 1s ease-out;
-        }
-
-        .core-component h3 {
-            color: #00bfff;
-            margin-top: 0;
-            margin-bottom: 10px;
-            border-bottom: 2px solid #00bfff;
-            padding-bottom: 5px;
-        }
-
-        .content-section {
-            display: none;
-            padding: 30px;
-            max-width: 1200px;
-            margin: 80px auto 0;
-            background: rgba(0, 0, 0, 0.8);
-            border-radius: 12px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-            text-align: left;
-            transition: opacity 0.5s ease, transform 0.5s ease;
-            position: relative;
-            color: #eee;
-            animation: fadeIn 1s ease-out;
-        }
-
-        .content-section.show {
-            display: block;
-            opacity: 1;
-        }
-
-        .content-section h2 {
-            color: #00bfff;
-            border-bottom: 3px solid #00bfff;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-            font-size: 2rem;
-        }
-
-        #project p,
-        #ai-history p,
-        #ai-reliability p,
-        #gallery p {
-            font-size: 1rem;
-        }
-
-        .content-section p {
-            line-height: 1.8;
-            margin: 0 0 20px;
-        }
-
-        .content-section .highlight {
-            background: #1e1e1e;
-            border-left: 4px solid #00bfff;
-            padding: 10px;
-            margin-bottom: 20px;
-            border-radius: 8px;
-        }
-
-        .content-section blockquote {
-            border-left: 4px solid #00bfff;
-            padding-left: 20px;
-            margin: 20px 0;
-            font-style: italic;
-            color: #bbb;
-        }
-
-        .image-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 15px;
-            justify-items: center;
-            animation: fadeIn 1s ease-out;
-        }
-
-        .image-gallery img {
-            max-width: 100%;
-            max-height: 200px;
-
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s;
-        }
-
-        .image-gallery img:hover {
-            transform: scale(1.05);
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes fadeOut {
-            from { opacity: 1; }
-            to { opacity: 0; }
-        }
-
-        @keyframes slideDown {
-            from { transform: translateY(-100%); }
-            to { transform: translateY(0); }
-        }
-
-        @keyframes bounceIn {
-            from { transform: scale(0); }
-            to { transform: scale(1); }
-        }
-
-        @keyframes zoomIn {
-            from { transform: scale(0.8); }
-            to { transform: scale(1); }
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes fadeInRight {
-            from { opacity: 0; transform: translateX(20px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        footer {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            color: #eee;
-            text-align: center;
-            padding: 10px;
-            font-size: 0.9rem;
-            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.3);
-            z-index: 999;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body onclick="goHome(event)">
+
     <div class="fixed-header">
         <img src="logo.png" alt="Logo">
         <h1>胸部CT智能诊断系统</h1>
@@ -381,12 +27,15 @@
         <button onclick="showContent('ai-history')">AI的发展历程</button>
         <button onclick="showContent('ai-reliability')">AI诊断的可靠性</button>
         <button onclick="showContent('gallery')">项目实体图展示</button>
-        <button onclick="window.open('https://aistudio.baidu.com/community/app/config/171405', '_blank')">AI问诊</button>
-    </div>
+        <a href="https://aistudio.baidu.com/community/app/171406/webUI?source=appMineRecent" target="_blank">
+            <button>AI问诊</button>
+        </a>
+
+
     </div>
 
     <div class="content-section" id="core-components">
-        <button class="home-button" onclick="goHome()">主页</button>
+
         <h2>核心构成</h2>
         <div class="core-components">
             <div class="core-component">
@@ -409,7 +58,7 @@
     </div>
 
     <div class="content-section" id="project">
-        <button class="home-button" onclick="goHome()">主页</button>
+
         <h2>项目设计说明</h2>
         <p>本项目旨在利用先进的计算机视觉技术和深度学习算法，对胸部CT图像进行智能分析，以辅助医生进行疾病诊断。项目主要包括以下几个部分：</p>
         <div class="highlight">
@@ -424,7 +73,7 @@
     </div>
 
     <div class="content-section" id="ai-history">
-        <button class="home-button" onclick="goHome()">主页</button>
+
         <h2>AI的发展历程</h2>
         <p>人工智能的发展经历了多个阶段，从早期的规则引擎到后来的机器学习，再到深度学习和神经网络的应用。以下是AI在医学影像分析领域的重要进展：</p>
         <div class="highlight">
@@ -435,7 +84,7 @@
     </div>
 
     <div class="content-section" id="ai-reliability">
-        <button class="home-button" onclick="goHome()">主页</button>
+
         <h2>AI诊断的可靠性</h2>
         <p>AI在医学影像分析中的可靠性是一个关键问题。为了提高AI诊断系统的可靠性，通常会采取以下措施：</p>
         <div class="highlight">
@@ -449,7 +98,7 @@
     </div>
 
     <div class="content-section" id="gallery">
-        <button class="home-button" onclick="goHome()">主页</button>
+
         <h2>项目实体图展示</h2>
         <div class="image-gallery">
             <img src="image1.jpg" alt="项目图1">
@@ -459,16 +108,52 @@
         </div>
     </div>
 
+
+
+
+<div class="content-section" id="ai-consultation">
+
+    <h2>AI问诊</h2>
+
+    <div class="chatbox-body" id="chatbox-body">
+        <div class="chat-message ai-message">
+            <img src="ai-avatar.png" class="avatar" alt="AI Avatar">
+            <span>你好，早日康复，请问您有什么症状？</span>
+        </div>
+    </div>
+    <div class="chatbox-footer">
+        <input type="text" id="user-input" placeholder="输入您的问题..." onkeypress="handleKeyPress(event)">
+        <button onclick="sendMessage()">发送</button>
+    </div>
+
+</div>
+
+
+
+
     <footer>
         <p>&copy; 2024 胸部CT智能诊断系统. 保留所有权利.</p>
     </footer>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
+
+        function goHome(event) {
+            if (event.target === document.body) {
+                document.querySelectorAll('.content-section').forEach(section => {
+                    section.classList.remove('show');
+                });
+                document.getElementById('button-container').classList.add('show');
+            }
+        }
+
+        // 显示按钮
         function showButtons() {
             document.getElementById('cover-screen').classList.add('hidden');
             document.getElementById('button-container').classList.add('show');
         }
 
+        // 显示指定内容
         function showContent(sectionId) {
             document.getElementById('button-container').classList.remove('show');
             document.querySelectorAll('.content-section').forEach(section => {
@@ -477,12 +162,88 @@
             document.getElementById(sectionId).classList.add('show');
         }
 
-        function goHome() {
-            document.querySelectorAll('.content-section').forEach(section => {
-                section.classList.remove('show');
-            });
-            document.getElementById('button-container').classList.add('show');
+
+
+        function typeEffect(element, text, index = 0) {
+            if (index < text.length) {
+                element.textContent = `AI: ${text.slice(0, index + 1)}`;
+                setTimeout(() => typeEffect(element, text, index + 1), 100); // 每100毫秒显示一个字符
+            }
         }
+
+
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+
+
+
+        // 打开聊天窗口
+        function showChatbox() {
+            document.getElementById('chatbox').classList.remove('hidden');
+        }
+
+        // 关闭聊天窗口
+        function closeChatbox() {
+            document.getElementById('chatbox').classList.add('hidden');
+        }
+
+        // 发送消息
+function addMessage(role, content) {
+    const chatboxBody = document.getElementById('chatbox-body');
+    const messageElement = document.createElement('div');
+    messageElement.classList.add('chat-message', role === 'user' ? 'user-message' : 'ai-message');
+
+    // 创建头像和文本
+    const avatar = document.createElement('img');
+    avatar.src = role === 'user' ? 'user-avatar.png' : 'ai-avatar.png';
+    avatar.className = 'avatar';
+
+    const textElement = document.createElement('span');
+    textElement.textContent = content;
+
+    // 根据角色调整头像和文本的顺序
+    if (role === 'user') {
+        messageElement.appendChild(textElement);
+        messageElement.appendChild(avatar);
+    } else {
+        messageElement.appendChild(avatar);
+        messageElement.appendChild(textElement);
+    }
+
+    chatboxBody.appendChild(messageElement);
+    chatboxBody.scrollTop = chatboxBody.scrollHeight; // 自动滚动到最新消息
+}
+
+function sendMessage() {
+    const userInput = document.getElementById('user-input').value;
+
+    if (userInput.trim() === "") {
+        alert("请输入您的问题");
+        return;
+    }
+
+    // 使用 addMessage 显示用户消息在聊天框中
+    addMessage('user', userInput);
+
+    // 清空输入框
+    document.getElementById('user-input').value = "";
+
+    // 调用 Python 后端的 API (通过 pywebview)
+    window.pywebview.api.send_prompt(userInput).then(function(result) {
+        // 使用 addMessage 显示 AI 返回的消息
+        addMessage('ai', result);
+    }).catch(function(error) {
+        console.error('Error:', error);
+    });
+}
+
+
     </script>
 </body>
 </html>
+
